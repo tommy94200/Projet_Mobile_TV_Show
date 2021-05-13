@@ -1,4 +1,4 @@
-package com.example.abriat
+package com.example.abriat.disposition.liste
 
 data class Jour(
     val numero : Int,
