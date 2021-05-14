@@ -24,7 +24,7 @@ class ShowListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView //recyclerview
     private val adapteur= ShowAdapter(listOf())
-    private val layoutManager = LinearLayoutManager(context)
+    private val layoutManager: AutoGridLayoutManager? = AutoGridLayoutManager(context, 500)
 
 
     override fun onCreateView(
@@ -46,6 +46,12 @@ class ShowListFragment : Fragment() {
 
         }
 
+
+        //AutoFitGridLayoutManager that auto fits the cells by the column width defined.
+
+
+
+
         //design pattern de retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.tvmaze.com/search/")
@@ -55,7 +61,7 @@ class ShowListFragment : Fragment() {
         val showApi: ShowApi = retrofit.create(ShowApi::class.java)
 
 
-        showApi.getShowList("lucifer").enqueue(object : Callback<List<ShowApiResponse>>{ //requête HTTP vers le serveur en asynchrone
+        showApi.getShowList("c").enqueue(object : Callback<List<ShowApiResponse>>{ //requête HTTP vers le serveur en asynchrone
 
             override fun onResponse(call: Call<List<ShowApiResponse>>,response: Response<List<ShowApiResponse>>){ //réponse reçue sans erreurs
                 if(response.isSuccessful && response.body() != null){
