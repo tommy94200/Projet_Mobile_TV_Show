@@ -1,11 +1,15 @@
 package com.example.abriat.disposition.liste
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.abriat.R
+
 
 
 class ShowAdapter(private var dataSet: List<Show>) :   RecyclerView.Adapter<ShowAdapter.ViewHolder>() {
@@ -16,10 +20,11 @@ class ShowAdapter(private var dataSet: List<Show>) :   RecyclerView.Adapter<Show
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
-
+        val imageView : ImageView
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.show_nom)
+            imageView = view.findViewById(R.id.show_image)
         }
     }
 
@@ -42,10 +47,21 @@ class ShowAdapter(private var dataSet: List<Show>) :   RecyclerView.Adapter<Show
         // contents of the view with that element
         val show = dataSet[position]
         viewHolder.textView.text = show.name
+
+        if(show.image != null){
+            Glide
+                .with(viewHolder.imageView.context)
+                .load(show.image.medium)
+                //.centerCrop()
+                .into(viewHolder.imageView);
+        }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
+
+
 
 }
 

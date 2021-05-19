@@ -46,12 +46,6 @@ class ShowListFragment : Fragment() {
 
         }
 
-
-        //AutoFitGridLayoutManager that auto fits the cells by the column width defined.
-
-
-
-
         //design pattern de retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.tvmaze.com/search/")
@@ -61,14 +55,13 @@ class ShowListFragment : Fragment() {
         val showApi: ShowApi = retrofit.create(ShowApi::class.java)
 
 
-        showApi.getShowList("c").enqueue(object : Callback<List<ShowApiResponse>>{ //requête HTTP vers le serveur en asynchrone
+        showApi.getShowList("a").enqueue(object : Callback<List<ShowApiResponse>>{ //requête HTTP vers le serveur en asynchrone
 
             override fun onResponse(call: Call<List<ShowApiResponse>>,response: Response<List<ShowApiResponse>>){ //réponse reçue sans erreurs
                 if(response.isSuccessful && response.body() != null){
                     val listReponse :List<ShowApiResponse> = response.body()!!
                     val listShow : List<Show> = listReponse.first().extractListofShowFromResponse(listReponse) //extraction des éléments à partir de la réponse
-                      this@ShowListFragment.adapteur.updateList(listShow) //rafraîchissement de l'adapteur
-                    println("ici reponse successful : "+ listReponse.first().toString())
+                    this@ShowListFragment.adapteur.updateList(listShow) //rafraîchissement de l'adapteur
                 }
                 else{
                     println("ici"+response.toString())
