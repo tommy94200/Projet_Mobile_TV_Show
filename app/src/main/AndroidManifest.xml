@@ -2,16 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.abriat">
 
+    <uses-permission android:name="android.permission.INTERNET" ></uses-permission>
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="School Cal"
+        android:label="TV Shows"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Abriat">
         <activity
             android:name=".MainActivity"
-            android:label="My School Calendar"
+            android:label="TV Shows"
             android:theme="@style/Theme.Abriat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

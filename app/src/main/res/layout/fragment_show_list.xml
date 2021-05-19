@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".disposition.liste.JourListFragment">
+    tools:context=".disposition.liste.ShowListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/jour_recyclerview"
+        android:id="@+id/show_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
