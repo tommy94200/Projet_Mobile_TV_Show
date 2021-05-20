@@ -1,14 +1,6 @@
-package com.example.abriat.disposition.api
+package com.example.abriat.show.api
 
-import android.R
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Log
-import android.widget.ImageView
-import com.example.abriat.disposition.liste.Show
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
+import com.example.abriat.show.liste.Show
 
 
 class ShowApiResponse (

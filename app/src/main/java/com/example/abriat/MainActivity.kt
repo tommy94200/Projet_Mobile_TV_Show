@@ -19,10 +19,6 @@ import com.google.android.material.snackbar.Snackbar
         val search = findViewById<View>(R.id.searchbar) as EditText
         search.visibility = View.INVISIBLE
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-          /*  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()*/
-            //affichage de la zone de texte et entrée de la variable de rercherche
-           // search.visibility = View.VISIBLE
             when(search.visibility){
                 View.INVISIBLE  -> {
                     search.visibility = View.VISIBLE
@@ -30,7 +26,6 @@ import com.google.android.material.snackbar.Snackbar
                 View.VISIBLE -> {
                     search.visibility = View.INVISIBLE
                     val request = search.text.toString()   //display the text that you entered in edit text
-                   // Snackbar.make(view, request, Snackbar.LENGTH_LONG).setAction("Action", null).show()
                 }
             }
 

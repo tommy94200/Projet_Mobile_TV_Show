@@ -1,15 +1,16 @@
-package com.example.abriat.disposition.liste
+package com.example.abriat.show.liste
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abriat.R
-import com.example.abriat.disposition.api.ShowApi
-import com.example.abriat.disposition.api.ShowApiResponse
+import com.example.abriat.show.api.ShowApi
+import com.example.abriat.show.api.ShowApiResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,8 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ShowListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView //recyclerview
-    private val adapteur= ShowAdapter(listOf())
-    private val layoutManager: AutoGridLayoutManager? = AutoGridLayoutManager(context, 500)
+    private val adapteur= ShowAdapter(listOf(), ::onClickedShow)
+
+
+    //private val layoutManager: AutoGridLayoutManager? = AutoGridLayoutManager(context, 500)
 
 
     override fun onCreateView(
@@ -41,7 +44,7 @@ class ShowListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.show_recyclerview)
 
         recyclerView.apply{
-            layoutManager = this@ShowListFragment.layoutManager
+            layoutManager = AutoGridLayoutManager(context, 500)
             adapter = this@ShowListFragment.adapteur
 
         }
@@ -69,9 +72,14 @@ class ShowListFragment : Fragment() {
             }
             override fun onFailure(call: Call<List<ShowApiResponse>>, t: Throwable) {
                 println("ici"+call.toString()+" "+t.toString())
-                TODO("Not yet implemented")
             }
         })
 
+    }
+
+    private fun onClickedShow(show: Show){
+        findNavController().navigate(R.id.action_ShowListFragment_to_ShowDetailFragment, bundleOf(
+                "ShowID" to show.id
+        ))
     }
 }

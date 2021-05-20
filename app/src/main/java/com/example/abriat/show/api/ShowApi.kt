@@ -1,9 +1,7 @@
-package com.example.abriat.disposition.api
+package com.example.abriat.show.api
 
-import com.example.abriat.disposition.liste.Show
 import retrofit2.http.GET
 import retrofit2.Call
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 

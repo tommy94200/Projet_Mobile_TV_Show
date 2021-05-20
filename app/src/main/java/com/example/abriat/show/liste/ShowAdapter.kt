@@ -1,4 +1,4 @@
-package com.example.abriat.disposition.liste
+package com.example.abriat.show.liste
 
 
 import android.view.LayoutInflater
@@ -6,13 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+//import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.abriat.R
 
 
 
-class ShowAdapter(private var dataSet: List<Show>) :   RecyclerView.Adapter<ShowAdapter.ViewHolder>() {
+class ShowAdapter(private var dataSet: List<Show>, var listener:((Show)->Unit)?) :   RecyclerView.Adapter<ShowAdapter.ViewHolder>() {
+
 
     /**
      * Provide a reference to the type of views that you are using
@@ -21,10 +23,12 @@ class ShowAdapter(private var dataSet: List<Show>) :   RecyclerView.Adapter<Show
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
         val imageView : ImageView
+
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.show_nom)
             imageView = view.findViewById(R.id.show_image)
+
         }
     }
 
@@ -48,12 +52,18 @@ class ShowAdapter(private var dataSet: List<Show>) :   RecyclerView.Adapter<Show
         val show = dataSet[position]
         viewHolder.textView.text = show.name
 
+        //affichage des images
         if(show.image != null){
             Glide
                 .with(viewHolder.imageView.context)
                 .load(show.image.medium)
                 //.centerCrop()
                 .into(viewHolder.imageView);
+        }
+
+        //listener
+        viewHolder.itemView.setOnClickListener{
+            listener?.invoke(show)
         }
 
     }

@@ -1,4 +1,4 @@
-package com.example.abriat.disposition.liste
+package com.example.abriat.show.liste
 
 data class ShowImage (
     val medium : String,
