@@ -1,5 +1,6 @@
 package com.example.abriat.show.liste
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class ShowListFragment : Fragment() {
-
     private lateinit var recyclerView: RecyclerView //recyclerview
     private val adapteur= ShowAdapter(listOf(), ::onClickedShow)
 
@@ -40,15 +40,19 @@ class ShowListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         recyclerView = view.findViewById(R.id.show_recyclerview)
-
         recyclerView.apply{
             layoutManager = AutoGridLayoutManager(context, 500)
             adapter = this@ShowListFragment.adapteur
 
         }
 
+        //récupération du cache
+        val pref: SharedPreferences = requireContext().getSharedPreferences("Cache", 0) // 0 - for private mode
+        val editor: SharedPreferences.Editor = pref.edit()
+
+        var request : String? = pref.getString("lastSearch", "under"); // getting String
+        println("ici"+request)
         //design pattern de retrofit
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.tvmaze.com/")
@@ -57,7 +61,8 @@ class ShowListFragment : Fragment() {
 
         val showApi: ShowApi = retrofit.create(ShowApi::class.java)
 
-        callSearchApi(showApi, "under")
+
+        callSearchApi(showApi, request!!)
 
         //partie recherche
         val search = view.findViewById(R.id.searchbar) as EditText
@@ -69,9 +74,12 @@ class ShowListFragment : Fragment() {
                 }
                 View.VISIBLE -> {
                     search.visibility = View.INVISIBLE
-                    val request = search.text.toString()   //display the text that you entered in edit text
+                     request = search.text.toString()   //display the text that you entered in edit text
                     if(request != null){
-                        callSearchApi(showApi,request)
+                        println("ici"+request)
+                        editor.putString("lastSearch", request); // Storing string
+                        editor.commit(); // commit changes
+                        callSearchApi(showApi, request!!)
                     }
                 }
             }
@@ -82,6 +90,7 @@ class ShowListFragment : Fragment() {
     private fun onClickedShow(show: Show){
         findNavController().navigate(R.id.action_ShowListFragment_to_ShowDetailFragment, bundleOf(
                 "ShowID" to show.id
+
         ))
     }
 

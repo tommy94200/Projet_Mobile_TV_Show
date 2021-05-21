@@ -1,5 +1,6 @@
 package com.example.abriat.show.detail
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +34,7 @@ class ShowDetailFragment : Fragment() {
     private lateinit var  textViewBox3: TextView
     private lateinit var  textViewBox4 : TextView
     private lateinit var  imageView : ImageView
+    private lateinit var searchRequest : String
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,16 @@ class ShowDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+
+        //récupération du cache
+        val pref: SharedPreferences = requireContext().getSharedPreferences("Cache", 0) // 0 - for private mode
+        val editor: SharedPreferences.Editor = pref.edit()
+
+        var request : String? = pref.getString("lastSearch", "under"); // getting String
+        println("ici"+request)
+
         //sélection des vues
         textViewName = view.findViewById(R.id.show_nom_detail)
         textViewResume = view.findViewById(R.id.show_resume_detail)
@@ -59,6 +70,7 @@ class ShowDetailFragment : Fragment() {
         imageView = view.findViewById(R.id.show_image_detail)
 
         var showID : Int? =arguments?.getInt("ShowID")
+
         //textViewName.text=  showID.toString() ?: "-1"
 
         //design pattern de retrofit
