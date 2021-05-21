@@ -86,7 +86,7 @@ class ShowDetailFragment : Fragment() {
                         textViewResume.text = HtmlCompat.fromHtml(element.summary,0)
                     }
 
-                    //affichage des images
+                    //affichage de l'image
                     if(element != null && element.image != null){
                         Glide
                                 .with(imageView.context)
