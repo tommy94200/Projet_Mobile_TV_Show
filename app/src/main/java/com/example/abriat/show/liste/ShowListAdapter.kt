@@ -13,7 +13,7 @@ import com.example.abriat.R
 
 
 
-class ShowAdapter(private var dataSet: List<Show>, var listener:((Show)->Unit)?) :   RecyclerView.Adapter<ShowAdapter.ViewHolder>() {
+class ShowListAdapter(private var dataSet: List<Show_ListItem>, var listener:((Show_ListItem)->Unit)?) :   RecyclerView.Adapter<ShowListAdapter.ViewHolder>() {
 
 
     /**
@@ -32,7 +32,7 @@ class ShowAdapter(private var dataSet: List<Show>, var listener:((Show)->Unit)?)
         }
     }
 
-    fun updateList(list: List<Show>){
+    fun updateList(list: List<Show_ListItem>){
         dataSet = list
         notifyDataSetChanged()
     }

@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ShowListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView //recyclerview
-    private val adapteur= ShowAdapter(listOf(), ::onClickedShow)
+    private val adapteur= ShowListAdapter(listOf(), ::onClickedShow)
 
 
     //private val layoutManager: AutoGridLayoutManager? = AutoGridLayoutManager(context, 500)
@@ -78,16 +78,15 @@ class ShowListFragment : Fragment() {
                     if(request != null){
                         println("ici"+request)
                         editor.putString("lastSearch", request); // Storing string
-                        editor.commit(); // commit changes
+                        editor.commit(); // commit changes on cache
                         callSearchApi(showApi, request!!)
                     }
                 }
             }
         }
-
     }
 
-    private fun onClickedShow(show: Show){
+    private fun onClickedShow(show: Show_ListItem){
         findNavController().navigate(R.id.action_ShowListFragment_to_ShowDetailFragment, bundleOf(
                 "ShowID" to show.id
 
@@ -101,7 +100,7 @@ class ShowListFragment : Fragment() {
                 if(response.isSuccessful && response.body() != null){
                     val listReponse :List<ShowApiListResponse> = response.body()!!
                     if(listReponse.isNotEmpty()) {
-                        val listShow: List<Show> = listReponse.first().extractListofShowFromResponse(listReponse) //extraction des éléments à partir de la réponse
+                        val listShow: List<Show_ListItem> = listReponse.first().extractListofShowFromResponse(listReponse) //extraction des éléments à partir de la réponse
                         this@ShowListFragment.adapteur.updateList(listShow) //rafraîchissement de l'adapteur
                     }else{
                         Toast.makeText(context, "No results founds for your request", Toast.LENGTH_LONG).show() // display the toast on home button click

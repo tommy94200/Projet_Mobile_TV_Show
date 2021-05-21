@@ -89,45 +89,16 @@ class ShowDetailFragment : Fragment() {
 
             override fun onResponse(call: Call<ShowApiDetailResponse>, response: Response<ShowApiDetailResponse>){ //réponse reçue sans erreurs
                 if(response.isSuccessful && response.body() != null){
-                    val element : ShowApiDetailResponse = response.body()!!
-                    println("ici"+element.name)
-                    textViewName.text = element.name
-                    if(element.summary != null){
-                        textViewResume.text = HtmlCompat.fromHtml(element.summary,0)
-                    }
-                    else{
-                        textViewResume.text = "Description not yet available."
-                    }
-
-                    //affichage de l'image
-                    if(element != null && element.image != null){
-                        Glide
-                                .with(imageView.context)
-                                .load(element.image.medium)
-                                //.centerCrop()
-                                .into(imageView);
-                    }
-                    else{
-                        imageView.setImageResource(R.drawable.unknown)
-                    }
-                    //récupération du nombre de saisons
-                    val nb_saisons = element._embedded.seasons.count()
-                    if(nb_saisons >=1 ){
-                        element.genres.add(nb_saisons.toString()+" season(s)")
-                    }
-                    //récupération des genres
-                    setInfoBox(textViewBox1, element.genres)
-                    setInfoBox(textViewBox2, element.genres)
-                    setInfoBox(textViewBox3, element.genres)
-                    setInfoBox(textViewBox4, element.genres)
-
+                    displayItemDetails(response)
                 }
                 else{
-                    println("ici"+response.toString())
+                    //println("ici"+response.toString())
                 }
             }
+
+
             override fun onFailure(call: Call<ShowApiDetailResponse>, t: Throwable) {
-                println("ici"+call.toString()+" "+t.toString())
+                //println("ici"+call.toString()+" "+t.toString())
             }
         })
     }
@@ -139,5 +110,44 @@ class ShowDetailFragment : Fragment() {
                 textview.visibility = View.VISIBLE
                 informations.removeAt(0)
         }
+    }
+
+    private fun displayItemDetails(response: Response<ShowApiDetailResponse>) {
+        val element: ShowApiDetailResponse = response.body()!!
+        println("ici" + element.name)
+        textViewName.text = element.name
+        if (element.summary != null) {
+            textViewResume.text = HtmlCompat.fromHtml(element.summary, 0)
+        } else {
+            textViewResume.text = "Description not yet available."
+        }
+
+        //affichage de l'image
+        if (element != null && element.image != null) {
+            Glide
+                    .with(imageView.context)
+                    .load(element.image.medium)
+                    //.centerCrop()
+                    .into(imageView);
+        } else {
+            imageView.setImageResource(R.drawable.unknown)
+        }
+
+
+        //récupération du nombre de saisons
+        val nb_saisons = element._embedded.seasons.count()
+        if (nb_saisons >= 1) {
+            if (element.genres.size >= 3) {
+                element.genres.add(3, nb_saisons.toString() + " season(s)")
+            } else {
+                element.genres.add(nb_saisons.toString() + " season(s)")
+            }
+
+        }
+        //récupération des genres
+        setInfoBox(textViewBox1, element.genres)
+        setInfoBox(textViewBox2, element.genres)
+        setInfoBox(textViewBox3, element.genres)
+        setInfoBox(textViewBox4, element.genres)
     }
 }
