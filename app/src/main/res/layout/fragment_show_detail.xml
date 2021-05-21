@@ -1,140 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".show.detail.ShowDetailFragment">
 
-    <TextView
-        android:id="@+id/show_nom_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Nom du film"
-        tools:textColor="@color/white" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black">
 
-
-    <ImageView
-        android:id="@+id/show_image_detail"
-        android:layout_width="211dp"
-        android:layout_height="296dp"
-        android:layout_centerInParent="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/show_nom_detail"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:cropToPadding="true"
-        android:padding="1dp"
-        tools:background="@drawable/show_detail_image_border"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <RelativeLayout
-        android:id="@+id/show_boxes_info_layout"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/show_image_detail"
-        app:layout_constraintVertical_bias="0.6"
-        android:layout_marginTop="25dp"
-        >
-
-
-        <TextView
-            android:id="@+id/show_detail_genre1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:text="action"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textAlignment="gravity"
-            android:layout_marginStart="15dp"
-            android:textColor="@color/DarkGray"
-            android:text="action"
-            android:background="@drawable/boxes_detail"
-            />
-
-        <TextView
-            android:id="@+id/show_detail_genre2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/show_detail_genre1"
-            android:background="@drawable/boxes_detail"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textAlignment="gravity"
-            android:textColor="@color/DarkGray"
-            android:text="thriller"
-            tools:text="thriller" />
-        <TextView
-            android:id="@+id/show_detail_genre3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/show_detail_genre2"
-            android:background="@drawable/boxes_detail"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textAlignment="gravity"
-            android:textColor="@color/DarkGray"
-            android:text="amour"
-            tools:text="amour" />
-        <TextView
-            android:id="@+id/show_detail_nb_saisons"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/show_detail_genre3"
-            android:background="@drawable/boxes_detail"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textAlignment="gravity"
-            android:textColor="@color/DarkGray"
-            android:text="3 saisons"
-            tools:text="3 saisons" />
-
-
-    </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/show_resume_detail"
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textStyle="italic"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/show_boxes_info_layout"
-        tools:text="SuperFilm dednzknefkvnjfvndvjfbfknsdncvsq dccdkfvnd,cnkv" />
+        android:background="@color/black"
+        tools:context=".show.detail.ShowDetailFragment">
 
-    <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/show_resume_detail" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            tools:context=".show.detail.ShowDetailFragment">
+
+            <TextView
+                android:id="@+id/show_nom_detail"
+                android:layout_width="wrap_content"
+                android:maxWidth="300dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginTop="48dp"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nom du film"
+                tools:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/show_image_detail"
+                android:layout_width="211dp"
+                android:layout_height="296dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/show_nom_detail"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:cropToPadding="true"
+                android:padding="1dp"
+                tools:background="@drawable/show_detail_image_border"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <RelativeLayout
+                android:id="@+id/show_boxes_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/show_image_detail"
+                app:layout_constraintVertical_bias="0.6"
+                android:layout_marginTop="25dp"
+                >
+
+
+                <TextView
+                    android:id="@+id/show_detail_box1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    tools:text="action"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:textAlignment="gravity"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/DarkGray"
+                    android:text="action"
+                    android:background="@drawable/boxes_detail"
+                    />
+
+                <TextView
+                    android:id="@+id/show_detail_box2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/show_detail_box1"
+                    android:background="@drawable/boxes_detail"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/DarkGray"
+                    android:text="thriller"
+                    tools:text="thriller" />
+                <TextView
+                    android:id="@+id/show_detail_box3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/show_detail_box2"
+                    android:background="@drawable/boxes_detail"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/DarkGray"
+                    android:text="amour"
+                    tools:text="amour" />
+                <TextView
+                    android:id="@+id/show_detail_box4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/show_detail_box3"
+                    android:background="@drawable/boxes_detail"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/DarkGray"
+                    tools:text="3 saisons" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/show_resume_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="italic"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/show_boxes_info_layout"
+                tools:text="SuperFilm dednzknefkvnjfvndvjfbfknsdncvsq dccdkfvnd,cnkv"
+                tools:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/button_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/previous"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/show_resume_detail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

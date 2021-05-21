@@ -15,20 +15,6 @@ import com.google.android.material.snackbar.Snackbar
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-        //partie recherche
-        val search = findViewById<View>(R.id.searchbar) as EditText
-        search.visibility = View.INVISIBLE
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            when(search.visibility) {
-                View.INVISIBLE -> {
-                    search.visibility = View.VISIBLE
-                }
-                View.VISIBLE -> {
-                    search.visibility = View.INVISIBLE
-                    val request = search.text.toString()   //display the text that you entered in edit text
-                }
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

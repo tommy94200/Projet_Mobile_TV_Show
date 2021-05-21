@@ -60,6 +60,9 @@ class ShowAdapter(private var dataSet: List<Show>, var listener:((Show)->Unit)?)
                 //.centerCrop()
                 .into(viewHolder.imageView);
         }
+        else{
+            viewHolder.imageView.setImageResource(R.drawable.unknown)
+        }
 
         //listener
         viewHolder.itemView.setOnClickListener{

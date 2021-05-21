@@ -14,9 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.abriat.R
 import com.example.abriat.show.api.ShowApi
 import com.example.abriat.show.api.ShowApiDetailResponse
-import com.example.abriat.show.api.ShowApiListResponse
-import com.example.abriat.show.liste.Show
-import com.example.abriat.show.liste.ShowAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,10 +28,10 @@ class ShowDetailFragment : Fragment() {
     //private var show:Show
     private lateinit var  textViewName : TextView
     private lateinit var  textViewResume : TextView
-    private lateinit var  textViewGenre1: TextView
-    private lateinit var  textViewGenre2 : TextView
-    private lateinit var  textViewGenre3: TextView
-    private lateinit var  textViewNBSaisons : TextView
+    private lateinit var  textViewBox1: TextView
+    private lateinit var  textViewBox2 : TextView
+    private lateinit var  textViewBox3: TextView
+    private lateinit var  textViewBox4 : TextView
     private lateinit var  imageView : ImageView
 
     override fun onCreateView(
@@ -50,13 +47,14 @@ class ShowDetailFragment : Fragment() {
         //sélection des vues
         textViewName = view.findViewById(R.id.show_nom_detail)
         textViewResume = view.findViewById(R.id.show_resume_detail)
-        textViewGenre1 = view.findViewById(R.id.show_detail_genre1)
-        textViewGenre1.visibility = View.INVISIBLE
-        textViewGenre2 = view.findViewById(R.id.show_detail_genre2)
-        textViewGenre2.visibility = View.INVISIBLE
-        textViewGenre3 = view.findViewById(R.id.show_detail_genre3)
-        textViewGenre3.visibility = View.INVISIBLE
-        textViewNBSaisons = view.findViewById(R.id.show_detail_nb_saisons)
+        textViewBox1 = view.findViewById(R.id.show_detail_box1)
+        textViewBox1.visibility = View.INVISIBLE
+        textViewBox2 = view.findViewById(R.id.show_detail_box2)
+        textViewBox2.visibility = View.INVISIBLE
+        textViewBox3 = view.findViewById(R.id.show_detail_box3)
+        textViewBox3.visibility = View.INVISIBLE
+        textViewBox4 = view.findViewById(R.id.show_detail_box4)
+        textViewBox4.visibility = View.INVISIBLE
 
         imageView = view.findViewById(R.id.show_image_detail)
 
@@ -85,6 +83,9 @@ class ShowDetailFragment : Fragment() {
                     if(element.summary != null){
                         textViewResume.text = HtmlCompat.fromHtml(element.summary,0)
                     }
+                    else{
+                        textViewResume.text = "Description not yet available."
+                    }
 
                     //affichage de l'image
                     if(element != null && element.image != null){
@@ -94,33 +95,20 @@ class ShowDetailFragment : Fragment() {
                                 //.centerCrop()
                                 .into(imageView);
                     }
-                    //récupération des genres
-                   if(element.genres != null && !(element.genres.isEmpty()) ){
-                       if(element.genres[0] != null){
-                           textViewGenre1.text = element.genres[0]
-                           textViewGenre1.visibility = View.VISIBLE
-                       }
-                       if(element.genres.count() >= 2 && element.genres[1] != null ){
-                           textViewGenre2.text = element.genres[1]
-                           textViewGenre2.visibility = View.VISIBLE
-                       }
-                       if(element.genres.count() >= 3 && element.genres[2] != null ){
-                           textViewGenre3.text = element.genres[2]
-                           textViewGenre3.visibility = View.VISIBLE
-                       }
-                   }
-
-                    //récupération des saisons
-                    val nb_saisons = element._embedded.seasons.count()
-                    if(nb_saisons >1 ){
-                        textViewNBSaisons.text = nb_saisons.toString()+" saisons"
-                    }
-                    else if(nb_saisons == 1 ){
-                        textViewNBSaisons.text = "1 saison"
-                    }
                     else{
-                        textViewNBSaisons.visibility = View.INVISIBLE
+                        imageView.setImageResource(R.drawable.unknown)
                     }
+                    //récupération du nombre de saisons
+                    val nb_saisons = element._embedded.seasons.count()
+                    if(nb_saisons >=1 ){
+                        element.genres.add(nb_saisons.toString()+" season(s)")
+                    }
+                    //récupération des genres
+                    setInfoBox(textViewBox1, element.genres)
+                    setInfoBox(textViewBox2, element.genres)
+                    setInfoBox(textViewBox3, element.genres)
+                    setInfoBox(textViewBox4, element.genres)
+
                 }
                 else{
                     println("ici"+response.toString())
@@ -132,4 +120,12 @@ class ShowDetailFragment : Fragment() {
         })
     }
 
+    fun setInfoBox(textview : TextView,  informations : ArrayList<String>){
+        if(informations != null && !(informations.isEmpty()) && informations.first() != null  ) {
+
+                textview.text = informations.first().toString()
+                textview.visibility = View.VISIBLE
+                informations.removeAt(0)
+        }
+    }
 }

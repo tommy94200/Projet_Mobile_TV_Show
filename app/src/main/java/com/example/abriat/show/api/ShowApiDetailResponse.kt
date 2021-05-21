@@ -11,5 +11,5 @@ data class ShowApiDetailResponse (
         val image: ShowImage,
         val summary: String,
         val _embedded : Show_Embedded,
-        val genres : List<String>?
+        var genres : ArrayList<String>
 )
