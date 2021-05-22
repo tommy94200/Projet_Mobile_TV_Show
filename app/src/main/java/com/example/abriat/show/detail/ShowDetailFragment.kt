@@ -6,16 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.text.HtmlCompat
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.abriat.R
 import com.example.abriat.show.Singletons
 import com.example.abriat.show.api.ShowApi
 import com.example.abriat.show.api.ShowApiDetailResponse
+import com.example.abriat.show.liste.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +38,7 @@ class ShowDetailFragment : Fragment() {
     private lateinit var  textViewBox4 : TextView
     private lateinit var  imageView : ImageView
     private lateinit var searchRequest : String
+    private lateinit var loader: ProgressBar
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -71,16 +74,27 @@ class ShowDetailFragment : Fragment() {
         imageView = view.findViewById(R.id.show_image_detail)
 
         var showID : Int? =arguments?.getInt("ShowID")
-
-
+        val viewModelFactory = ShowDetailViewModelFactory(showID)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ShowDetailViewModel::class.java)
+        loader=view.findViewById(R.id.loader)
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_ShowDetailFragment_to_ShowListFragment)
         }
 
-        Singletons.api.getShowDetail(showID, "seasons").enqueue(object : Callback<ShowApiDetailResponse> { //requête HTTP vers le serveur en asynchrone
 
-            override fun onResponse(call: Call<ShowApiDetailResponse>, response: Response<ShowApiDetailResponse>){ //réponse reçue sans erreurs
+        viewModel.data.observe(viewLifecycleOwner, Observer{showDetailModel ->
+            loader.isVisible = showDetailModel is ShowDetailLoader
+            when(showDetailModel){
+                is ShowDetailSuccess -> displayItemDetails(showDetailModel.response)
+                ShowDetailError -> Toast.makeText(context, "Oups... Something did wrong with your request", Toast.LENGTH_LONG).show()
+                ShowDetailNotFound -> Toast.makeText(context, "No results founds for your request", Toast.LENGTH_LONG).show()
+                else -> Unit
+            }
+        })
+        /*Singletons.api.getShowDetail(showID, "seasons").enqueue(object : Callback<ShowApiDetailResponse> { //requête HTTP vers le serveur en asynchrone
+
+           override fun onResponse(call: Call<ShowApiDetailResponse>, response: Response<ShowApiDetailResponse>){ //réponse reçue sans erreurs
                 if(response.isSuccessful && response.body() != null){
                     displayItemDetails(response)
                 }
@@ -93,7 +107,7 @@ class ShowDetailFragment : Fragment() {
             override fun onFailure(call: Call<ShowApiDetailResponse>, t: Throwable) {
                 //println("ici"+call.toString()+" "+t.toString())
             }
-        })
+        })*/
     }
 
     fun setInfoBox(textview : TextView,  informations : ArrayList<String>){

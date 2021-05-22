@@ -71,8 +71,6 @@ class ShowListViewFragment : Fragment() {
                 ShowListNotFound -> Toast.makeText(context, "No results founds for your request", Toast.LENGTH_LONG).show()
                 else -> Unit
             }
-
-            println("ici + showModel.request ="+viewModel.request.value)
         })
 
 
