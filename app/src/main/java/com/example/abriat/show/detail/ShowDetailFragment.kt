@@ -13,6 +13,7 @@ import androidx.core.text.HtmlCompat
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.abriat.R
+import com.example.abriat.show.Singletons
 import com.example.abriat.show.api.ShowApi
 import com.example.abriat.show.api.ShowApiDetailResponse
 import retrofit2.Call
@@ -71,21 +72,13 @@ class ShowDetailFragment : Fragment() {
 
         var showID : Int? =arguments?.getInt("ShowID")
 
-        //textViewName.text=  showID.toString() ?: "-1"
 
-        //design pattern de retrofit
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.tvmaze.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        val showApi: ShowApi = retrofit.create(ShowApi::class.java)
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_ShowDetailFragment_to_ShowListFragment)
         }
 
-        showApi.getShowDetail(showID, "seasons").enqueue(object : Callback<ShowApiDetailResponse> { //requête HTTP vers le serveur en asynchrone
+        Singletons.api.getShowDetail(showID, "seasons").enqueue(object : Callback<ShowApiDetailResponse> { //requête HTTP vers le serveur en asynchrone
 
             override fun onResponse(call: Call<ShowApiDetailResponse>, response: Response<ShowApiDetailResponse>){ //réponse reçue sans erreurs
                 if(response.isSuccessful && response.body() != null){
