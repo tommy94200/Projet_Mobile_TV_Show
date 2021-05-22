@@ -3,26 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ShowListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.abriat.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/ShowListFragment"
+        android:name="com.example.abriat.show.liste.ShowListFragment"
+        android:label="ShowListFragment"
+        tools:layout="@layout/fragment_show_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ShowListFragment_to_ShowDetailFragment"
+            app:destination="@id/ShowDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.abriat.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/ShowDetailFragment"
+        android:name="com.example.abriat.show.detail.ShowDetailFragment"
+        android:label="ShowDetailFragment"
+        tools:layout="@layout/fragment_show_detail">
+        <argument
+            android:name="ShowID"
+            app:argType="integer"
+            android:defaultValue="-1"
+            />
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_ShowDetailFragment_to_ShowListFragment"
+            app:destination="@id/ShowListFragment" />
     </fragment>
 </navigation>
