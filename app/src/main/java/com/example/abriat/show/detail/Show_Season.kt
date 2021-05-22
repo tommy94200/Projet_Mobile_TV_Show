@@ -1,6 +1,6 @@
-package com.example.abriat.show.liste
+package com.example.abriat.show.detail
 
-data class Show_season (
+data class Show_Season (
         val id: Int,
         val number: Int,
         val name: String,

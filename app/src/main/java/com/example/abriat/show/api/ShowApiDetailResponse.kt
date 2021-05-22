@@ -1,9 +1,7 @@
 package com.example.abriat.show.api
 
-import com.example.abriat.show.liste.Show
 import com.example.abriat.show.liste.ShowImage
-import com.example.abriat.show.liste.Show_Embedded
-import com.example.abriat.show.liste.Show_Genre
+import com.example.abriat.show.detail.Show_Embedded
 
 data class ShowApiDetailResponse (
         val id : Int,
@@ -11,5 +9,5 @@ data class ShowApiDetailResponse (
         val image: ShowImage,
         val summary: String,
         val _embedded : Show_Embedded,
-        val genres : List<String>?
+        var genres : ArrayList<String>
 )
