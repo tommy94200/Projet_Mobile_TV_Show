@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/ShowListFragment"
-        android:name="com.example.abriat.show.liste.ShowListFragment"
+        android:name="com.example.abriat.show.liste.ShowListViewFragment"
         android:label="ShowListFragment"
         tools:layout="@layout/fragment_show_list">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/ShowDetailFragment"
-        android:name="com.example.abriat.show.detail.ShowDetailFragment"
+        android:name="com.example.abriat.show.detail.ShowDetailViewFragment"
         android:label="ShowDetailFragment"
         tools:layout="@layout/fragment_show_detail">
         <argument
