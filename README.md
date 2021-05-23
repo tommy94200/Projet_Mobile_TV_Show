@@ -5,7 +5,8 @@ Réalisé par Thomas Abriat - Classe 32
 ### Version Stable Courante : v2 (master) ###
 
 ### Captures d'écran ###
-![Écran d'accueil](https://github.com/tommy94200/Projet_Mobile_TV_Show/blob/release/screenshots/1.jpg)
+div style="text-align:center"><img src=" screenshots/1.jpg" /></div>.
+
 
 ### Infos Pratiques ####
 
