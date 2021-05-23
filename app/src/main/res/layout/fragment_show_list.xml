@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".show.liste.ShowListFragment">
+    tools:context=".show.liste.ShowListViewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/show_recyclerview"
@@ -39,8 +39,8 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="16dp"
         android:textColorHint="@color/DarkGray"
-        android:paddingStart="15dp"
+        android:paddingStart="15dp" />
 
+    <include layout="@layout/loader" />
 
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

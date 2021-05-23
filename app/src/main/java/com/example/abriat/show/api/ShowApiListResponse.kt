@@ -1,15 +1,15 @@
 package com.example.abriat.show.api
 
-import com.example.abriat.show.liste.Show_ListItem
+import com.example.abriat.show.liste.Show
 
 
 class ShowApiListResponse (
     val score : Float,
-    val show: Show_ListItem
+    val show: Show
 ){
 
-     fun extractListofShowFromResponse( listResponse :List<ShowApiListResponse>) : List<Show_ListItem> {
-         var showList = arrayListOf<Show_ListItem>()
+     fun extractListofShowFromResponse( listResponse :List<ShowApiListResponse>) : List<Show> {
+         var showList = arrayListOf<Show>()
          for (response in listResponse) {
              showList.add(response.show)
          }
