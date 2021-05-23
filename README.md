@@ -5,11 +5,22 @@ Réalisé par Thomas Abriat - Classe 32
 ### Version Stable Courante : v2 (master) ###
 
 ### Captures d'écran ###
-<img width="192px" height="415px" src="./screenshots/1.jpg" />
+<table>
+  <tr>
+    <td>
+      <img width="192px" height="415px" src="./screenshots/1.jpg" />
+    </td>
+    <td>
 <img width="192px" height="415px" src="./screenshots/2.jpg" />
-<img width="192px" height="415px" src="./screenshots/3.jpg" />
-<img width="192px" height="415px" src="./screenshots/4.jpg" />
-
+    </td>
+    <td>
+      <img width="192px" height="415px" src="./screenshots/3.jpg" />
+    </td>
+    <td>
+      <img width="192px" height="415px" src="./screenshots/4.jpg" />
+    </td>
+   <tr>
+  <table>
 ### Infos Pratiques ####
 
 Un fichier apk de la dernière version stable est disponible dans le dossier apk 
