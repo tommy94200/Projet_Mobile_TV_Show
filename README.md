@@ -4,7 +4,7 @@ Réalisé par Thomas Abriat - Classe 32
 
 ### Version Stable Courante : v2 (master) ###
 
-#### Captures d'écran ###
+### Captures d'écran ###
 
 ### Infos Pratiques ####
 
