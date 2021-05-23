@@ -8,12 +8,12 @@ Réalisé par Thomas Abriat - Classe 32
 
 ### Captures d'écran ###
 <table>
-  <th>
-    <td>Écran d'accueil</td>
-    <td>Barre de recherche</td>
-    <td>Résultats de la recherche</td>
-    <td>Détails d'un élément</td>
-  </th>
+  <tr>
+    <th>Écran d'accueil</th>
+    <th>Barre de recherche</th>
+    <th>Résultats de la recherche</th>
+    <th>Détails d'un élément</th>
+  </tr>
   <tr>
     <td>
       <img width="192px" height="415px" src="./screenshots/1.jpg" />
