@@ -1,7 +1,9 @@
 package com.example.abriat.show.liste
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.abriat.show.Singletons
@@ -11,10 +13,22 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class ShowListViewModel(mApplication: Application?, mParam: String?) : ViewModel(){
+class ShowListViewModel(mApplication: Application?) : ViewModel(){
     val list : MutableLiveData<ShowListModel> = MutableLiveData()
     var request: MutableLiveData<String?> = MutableLiveData()
+    val application = mApplication
+    val pref: SharedPreferences = application!!.getSharedPreferences("Cache", 0) // 0 - for private mode
+    val editor: SharedPreferences.Editor = pref.edit()
 
+    init{
+        loadRequestFromCache()
+    }
+
+    private fun loadRequestFromCache() {
+        //récupération du cache
+        var request : String? = pref.getString("lastSearch", "under"); // getting String
+        this.request.value=request
+    }
 
     fun getListfromApi(request : String?) {
 
@@ -29,7 +43,6 @@ class ShowListViewModel(mApplication: Application?, mParam: String?) : ViewModel
                         val listShow: List<Show> = listReponse.first().extractListofShowFromResponse(listReponse) //extraction des éléments à partir de la réponse
                         list.value = ShowListSuccess(listShow)
                     }else{
-                       //Toast.makeText(application!!.applicationContext, "No results founds for your request", Toast.LENGTH_LONG).show() // display the toast on home button click
                         list.value= ShowListNotFound
                     }
                 }
@@ -38,9 +51,9 @@ class ShowListViewModel(mApplication: Application?, mParam: String?) : ViewModel
                 }
             }
             override fun onFailure(call: Call<List<ShowApiListResponse>>, t: Throwable) {
-                println("ici"+call.toString()+" "+t.toString())
             }
         })
     }
+
 
 }

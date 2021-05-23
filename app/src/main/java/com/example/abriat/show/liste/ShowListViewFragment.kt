@@ -23,6 +23,7 @@ class ShowListViewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView //recyclerview
     private val adapteur= ShowListAdapter(listOf(), ::onClickedShow)
     private lateinit var loader: ProgressBar
+    var request : String? = null
 
 
 
@@ -43,24 +44,12 @@ class ShowListViewFragment : Fragment() {
             adapter = this@ShowListViewFragment.adapteur
 
         }
-
-        val viewModelFactory = ShowListViewModelFactory(requireActivity().application, "under")
+        //intégration du viewModel
+        val viewModelFactory = ShowListViewModelFactory(requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(ShowListViewModel::class.java)
-
-
-        //récupération du cache
-        val pref: SharedPreferences = requireContext().getSharedPreferences("Cache", 0) // 0 - for private mode
-        val editor: SharedPreferences.Editor = pref.edit()
-
-
-        var request : String? = pref.getString("lastSearch", "under"); // getting String
-        println("ici"+request)
-
-        viewModel.request.value=request
 
         viewModel.request.observe(viewLifecycleOwner, Observer{list ->
             viewModel.getListfromApi(viewModel.request.value)
-            println("ici + showModel.request observer ="+viewModel.request.value)
         })
 
         viewModel.list.observe(viewLifecycleOwner, Observer{showListModel ->
@@ -72,7 +61,6 @@ class ShowListViewFragment : Fragment() {
                 else -> Unit
             }
         })
-
 
         //partie recherche
         val search = view.findViewById(R.id.searchbar) as EditText
@@ -86,13 +74,12 @@ class ShowListViewFragment : Fragment() {
                     search.visibility = View.INVISIBLE
                      request = search.text.toString()   //display the text that you entered in edit text
                     if(request != null){
-                        println("ici"+request)
                         search.setEnabled(false);
                         search.setEnabled(true);
-                        editor.putString("lastSearch", request); // Storing string
-                        editor.commit(); // commit changes on cache
-                        viewModel.request.value=request
-                        println("ici + showModel.request ="+viewModel.request.value)
+                        //sauvegarde dans le cache
+                        viewModel.editor.putString("lastSearch", request); // Storing string
+                        viewModel.editor.commit(); // commit changes on cache
+                        viewModel.request.value=request //mise à jour de la request
                     }
                 }
             }
