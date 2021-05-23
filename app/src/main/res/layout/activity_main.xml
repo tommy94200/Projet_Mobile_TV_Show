@@ -9,6 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:background="@color/teal_200"
+
         android:theme="@style/Theme.Abriat.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -16,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/black"
-            app:popupTheme="@style/Theme.Abriat.PopupOverlay" />
+            app:popupTheme="@style/Theme.Abriat.PopupOverlay"
+            tools:background="@color/white"/>
 
         <View
             android:background="@color/teal_200"
@@ -26,12 +29,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
-
-
-
-
-
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

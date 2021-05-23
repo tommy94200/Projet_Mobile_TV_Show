@@ -8,4 +8,5 @@ Réalisé par Thomas Abriat - Classe 32
 
 ### Infos Pratiques ####
 
+Un fichier apk de la dernière version stable est disponible dans le dossier apk 
 Les branches features ont étés volontairement conservées afin de que l'on puisse observer le gitflow du projet
