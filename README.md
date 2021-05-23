@@ -1,5 +1,6 @@
-# <img width="55px" height="60px" src="./screenshots/logo.png" />   Projet_Mobile_TV_Show
+# <img width="42px" height="45px" src="./screenshots/logo.png" />   Projet_Mobile_TV_Show
 Projet mobile 3A : Accès aux informations liées à un tv show via l'api rest TVmaze, le but étant de permettre à l'utilisateur de faire une recherche de show, de lui proposer les 10 meilleurs résultats retournés par TVmaze et d'afficher le détail d'un élément lorsque celui-ci est selectionné depuis la liste. La dernière recherche effetuée est stockée en cache afin de faciliter la navigation dans l'application même si celle-ci est relancée.
+<br>
 Le projet est basé sur l'architecture MVVM.
 
 Réalisé par Thomas Abriat - Classe 32
